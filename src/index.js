@@ -8,12 +8,13 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-export default {
-	async fetch(request, env, ctx) {
-		const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY.get();
-		return new Response('Hello World!');
-	},
-};
+// export default {
+
+// 	async fetch(request, env) {
+// 		// const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY.get();
+// 		return new Response('Hello Worker!');
+// 	},
+// };
 
 // export default {
 //   async fetch(request, env) {
@@ -30,3 +31,22 @@ export default {
 //     });
 //   },
 // };
+
+import { env } from "cloudflare:workers";
+
+export default {
+  fetch(req) {
+    Response.new(sayHello());
+  },
+};
+
+// env is not an argument to sayHello...
+function sayHello() {
+  let myName = getName();
+  return `Hello, ${myName}`;
+}
+
+// ...nor is it an argument to getName
+function getName() {
+  return env.GOOGLE_SERVICE_ACCOUNT_KEY.get() || "Worker World";
+}
