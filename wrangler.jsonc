@@ -5,7 +5,16 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "my-first-worker",
+
 	"main": "src/index.js",
+	"secrets_store_secrets": [
+		{
+			"binding": "GOOGLE_SERVICE_ACCOUNT_KEY",
+			"store_id": "608408a8343b4169a52c6cf75080de22",
+			"secret_name": "GOOGLE_SERVICE_ACCOUNT_KEY"
+		}
+	],
+
 	"compatibility_date": "2025-07-26",
 	"observability": {
 		"enabled": true
