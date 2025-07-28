@@ -6,15 +6,18 @@ import { google } from 'googleapis';
 export default {
 	async fetch(request, env, ctx) {
 		const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY.get();
+		const serviceAccountKey = JSON.parse(APIkey);
 		// Example of using the secret safely in an API request
-		const auth = new google.auth.GoogleAuth({
-			credentials: JSON.parse(APIkey),
-			scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
-		});
+		const jwtClient = new google.auth.JWT(
+			serviceAccountKey.client_email,
+			undefined, // private key is not used directly here
+			serviceAccountKey.private_key,
+			['https://www.googleapis.com/auth/calendar.readonly']
+		);
 		// const auth = new google.auth.GoogleAuth({
 		// 	credentials: JSON.parse(APIkey),
 		// 	scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
 		// });
-		return new Response('Hello Worker! '+ APIkey);
+		return new Response('Hello Worker! ' + APIkey);
 	},
 };
