@@ -34,19 +34,24 @@
 
 import { env } from "cloudflare:workers";
 
+// export default {
+//   fetch(req) {
+//     Response.new(sayHello());
+//   },
+// };
+
+// // env is not an argument to sayHello...
+// function sayHello() {
+//   let myName = getName();
+//   return `Hello, ${myName}`;
+// }
+
+// // ...nor is it an argument to getName
+// function getName() {
+//   return env.GOOGLE_SERVICE_ACCOUNT_KEY.get() || "Worker World";
+// }
 export default {
-  fetch(req) {
-    Response.new(sayHello());
-  },
+	async fetch(request, env, ctx) {
+		return new Response('Hello World!');
+	},
 };
-
-// env is not an argument to sayHello...
-function sayHello() {
-  let myName = getName();
-  return `Hello, ${myName}`;
-}
-
-// ...nor is it an argument to getName
-function getName() {
-  return env.GOOGLE_SERVICE_ACCOUNT_KEY.get() || "Worker World";
-}
