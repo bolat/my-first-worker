@@ -32,7 +32,7 @@
 //   },
 // };
 
-import { env } from "cloudflare:workers";
+import { env } from 'cloudflare:workers';
 
 // export default {
 //   fetch(req) {
@@ -52,6 +52,8 @@ import { env } from "cloudflare:workers";
 // }
 export default {
 	async fetch(request, env, ctx) {
-		return new Response('Hello Worker!');
+		const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY.get();
+		// Example of using the secret safely in an API request
+		return new Response('Hello Worker!' + APIkey);
 	},
 };
