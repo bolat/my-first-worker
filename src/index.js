@@ -6,7 +6,7 @@ import { google } from 'googleapis';
 export default {
 	async fetch(request, env, ctx) {
 		const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY;
-		const serviceAccountKey = JSON.parse(APIkey);
+		// const serviceAccountKey = JSON.parse(APIkey);
 
 		// const jwtClient = new google.auth.JWT(
 		// 	serviceAccountKey.client_email,
