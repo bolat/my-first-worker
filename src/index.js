@@ -1,4 +1,4 @@
-import { env } from 'cloudflare:workers';
+// import { env } from 'cloudflare:workers';
 import { google } from 'googleapis';
 
 // src/index.js
