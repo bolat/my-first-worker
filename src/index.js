@@ -5,7 +5,7 @@ import { google } from 'googleapis';
 // This is a Cloudflare Worker that uses an environment variable for a Google Service Account key.
 export default {
 	async fetch(request, env, ctx) {
-		const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY;
+		const APIkey = await env.GOOGLE_SERVICE_ACCOUNT_KEY.get();
 		// const serviceAccountKey = JSON.parse(APIkey);
 
 		// const jwtClient = new google.auth.JWT(
