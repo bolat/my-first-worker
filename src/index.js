@@ -18,6 +18,6 @@ export default {
 		// 	credentials: JSON.parse(APIkey),
 		// 	scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
 		// });
-		return new Response('Hello Worker! ' + APIkey);
+		return new Response('Hello Worker! ' + serviceAccountKey.client_email);
 	},
 };
